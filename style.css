@@ -1,0 +1,142 @@
+table {
+  table-layout: fixed;
+  text-align: center;
+  border-collapse: separate;
+  border-spacing: 4px;
+}
+
+.title {text-align: center; font-weight: bold; height: 25px;}
+
+td > span:hover {
+  border: 1px solid #269fee;
+  cursor: pointer;
+}
+
+th {padding: 5px; font-weight: normal; color: #8b8b8b;}
+
+td > span {
+  padding: 4px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  display: block;
+  height: 28px;
+  width: 28px;
+  margin: 0 3px;
+}
+
+.calendar {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.month {padding: 20px 40px;}
+
+.calendar > div {display: inline-block;}
+
+.selected {
+  font-weight: bold;
+  color: #269fee;
+}
+
+.invalid, .invalid:hover {
+  color: #ddd;
+  border-color: transparent;
+  cursor: default;
+}
+
+.datepicker-outer {
+  padding: 40px;
+  box-shadow: 0 0 10px rgba(1,1,1,0.175);
+}
+.datepicker-outer .scrollbar {
+  border: 1px solid #cfdce9;
+  border-radius: 3px;
+  padding: 20px 30px;
+  position: relative;
+  width: 100%;
+}
+
+.datepicker-outer .scrollbar div {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+.datepicker-outer .scrollbar > div {
+  width: 100%;
+}
+
+.datepicker-outer .scrollbar .scroll-days,
+.datepicker-outer .scrollbar .scroll-weeks {
+  width: auto;
+  height: 20px;
+}
+
+.datepicker-outer .scrollbar .scroll-weeks:before {
+  content: '';
+  position: absolute;
+  display: block;
+  height: 100%;
+  top: 0;
+  left: 0;
+  width: 1px;
+  z-index: 1;
+}
+
+.datepicker-outer .scrollbar .scroll-months .scroll-weeks:first-child:before {background: #f0f0f0;}
+.datepicker-outer .scrollbar .scroll-months:first-child .scroll-weeks:first-child:before {background: #cbcbcb;}
+.datepicker-outer .scrollbar .scroll-months:last-child .scroll-weeks:last-child:before {background: #cbcbcb; left: auto; right: 0;}
+
+.datepicker-outer .scrollbar .scroll-days:after {
+  content: '';
+  position: absolute;
+  background: black;
+  display: block;
+  height: 7px;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #eee;
+  border: 1px solid #cfdde9; 
+  border-left: none;
+  border-right: none;
+}
+
+.datepicker-outer .scrollbar .scroll-days.valid:after {background: #d3e8f7;}
+.datepicker-outer .scrollbar .scroll-days.selected:after {
+  background: #72bef4; 
+  border: 1px solid #269fee; 
+  border-left: none;
+  border-right: none;
+  height: 5px;
+  bottom:1px;
+  box-shadow: 0 1px #cfdde9, 0 -1px #cfdde9; 
+}
+
+.datepicker-outer .scrollbar .scroll-months {height: 20px; border-top: 1px solid #cbcbcb;}
+.datepicker-outer .scrollbar .empty {width: 0!important;}
+.datepicker-outer {width: 100%;}
+#date-slider {width: 100%;}
+
+.datepicker-outer .scrollbar .ui-widget-content {
+  background: none;
+  position: absolute;
+  z-index: 2;
+  height: 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.datepicker-outer .scrollbar .ui-state-default {
+  background: url(icons.png) no-repeat;
+  width: 24px;
+  height: 34px;
+  top: 2px;
+  border: none;
+  z-index: 10;
+  background-position: 1px -41px;
+  outline: none;
+}
+
+/* cbcbcb

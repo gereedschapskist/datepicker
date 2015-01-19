@@ -139,8 +139,9 @@
         // if new month - fill empty cells
         if (date == 1) {
           var week = 0; 
-          if (day == 0) {day = 6;}
-          for (i = 0; i < day-1; i++) {
+          var len = day-1;
+          if (day == 0) {len = 6;}
+          for (i = 0; i < len; i++) {
             days.push({date: '', empty: true});
           }
         }
@@ -169,6 +170,7 @@
       }
     }
   }
+  console.log(calendar[5]);
   
   $(document).ready(function(){
     $(".from, .to").inputmask("d.m.y");
@@ -190,7 +192,7 @@
   function scrollInit() {
     var totalWidth = $('.datepicker-outer').width();
     var monthWidth = (totalWidth / calendar.length) * 100 / totalWidth;
-    var monthWidth = monthWidth.toFixed(4) + '%';
+    var monthWidth = monthWidth + '%';
     $('.scroll-months').width(monthWidth);
     $('.scroll-months').each(function(){
       var totalDays = $(this).find('.scroll-days:not(.empty)').length;      
