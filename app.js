@@ -78,6 +78,14 @@
           date = parsedate(this.from.string).date;
           $('.to').val(this.from.string);
         }
+        else if (!isFirst && date > validTo) {
+          date = validTo;
+          $('.to').val(formatdate(validTo));
+        }
+        else if (isFirst && date < validFrom) {
+          date = validFrom;
+          $('.from').val(formatdate(validFrom));
+        }
         var year = date.getFullYear();
         var month = date.getMonth();
         var day = date.getDate();
@@ -95,6 +103,7 @@
         }
       }
     };
+    this.daynames = datenames.days;
   });
   
   //filters
@@ -114,7 +123,7 @@
   var datenames = {
     months : ['Январь','Февраль','Март','Апрель','Май','Июнь',
               'Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
-    days : ['вс','пн','вт','ср','чт','пт','сб']
+    days : ['пн','вт','ср','чт','пт','сб','вс']
   };
   
   
@@ -170,7 +179,6 @@
       }
     }
   }
-  console.log(calendar[5]);
   
   $(document).ready(function(){
     $(".from, .to").inputmask("d.m.y");
@@ -185,12 +193,39 @@
         var width = $('.calendar').prop('scrollWidth');
         var left = (width/days_index.length)*ui.value;
         $('.calendar').scrollLeft(left);
-      }
+      },
+      animate: 200
+    });
+    
+    $.event.props.push("wheelDelta");
+    $( '.calendar' ).on( 'mousewheel DOMMouseScroll', function (e){
+      var delta = e.wheelDelta || -e.detail;
+      this.scrollLeft += ( delta < 0 ? 1 : -1 ) * 50;
+      var left = $(this).scrollLeft();
+      var width = $('.calendar').prop('scrollWidth');
+      var value = days_index.length * left / width;
+      $( "#date-slider" ).slider('value',value);
+      //e.preventDefault();
+    });
+    
+    $('.arrow').click(function(){
+      var left = $('.calendar').scrollLeft();
+      var month = $('.month').width();
+      if ($(this).is('[class*="left"]')) {month *= -1;}
+      console.log(typeof left, typeof month);
+      left += month;
+      $('.calendar').animate({scrollLeft: left}, 200, 'easeOutCubic');
+      var width = $('.calendar').prop('scrollWidth');
+      var value = days_index.length * left / width;
+      $( "#date-slider" ).slider('value',value);
     });
   });
 
   function scrollInit() {
     var totalWidth = $('.datepicker-outer').width();
+    var yearWidth = (totalWidth / calendar.length) * 100 / (totalWidth*12);
+    var yearWidth = yearWidth + '%';
+    $('.scroll-years').width(yearWidth);
     var monthWidth = (totalWidth / calendar.length) * 100 / totalWidth;
     var monthWidth = monthWidth + '%';
     $('.scroll-months').width(monthWidth);

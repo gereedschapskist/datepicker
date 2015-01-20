@@ -52,7 +52,7 @@ td > span {
 .datepicker-outer .scrollbar {
   border: 1px solid #cfdce9;
   border-radius: 3px;
-  padding: 20px 30px;
+  padding: 8px 30px 20px;
   position: relative;
   width: 100%;
 }
@@ -84,8 +84,14 @@ td > span {
   z-index: 1;
 }
 
-.datepicker-outer .scrollbar .scroll-months .scroll-weeks:first-child:before {background: #f0f0f0;}
-.datepicker-outer .scrollbar .scroll-months:first-child .scroll-weeks:first-child:before {background: #cbcbcb;}
+.scroll-months > span {
+  position: absolute;
+  top: -25px;
+  left: -16px;
+}
+
+.datepicker-outer .scrollbar .scroll-months .scroll-weeks:first-of-type:before {background: #f0f0f0;}
+.datepicker-outer .scrollbar .scroll-months.year_first .scroll-weeks:first-of-type:before {background: #cbcbcb;}
 .datepicker-outer .scrollbar .scroll-months:last-child .scroll-weeks:last-child:before {background: #cbcbcb; left: auto; right: 0;}
 
 .datepicker-outer .scrollbar .scroll-days:after {
@@ -96,7 +102,7 @@ td > span {
   height: 7px;
   bottom: 0;
   left: 0;
-  width: 100%;
+  width: 104%;
   background: #eee;
   border: 1px solid #cfdde9; 
   border-left: none;
@@ -121,11 +127,12 @@ td > span {
 
 .datepicker-outer .scrollbar .ui-widget-content {
   background: none;
-  position: absolute;
+  position: relative;
   z-index: 2;
   height: 20px;
   border: none;
   cursor: pointer;
+  margin-bottom: -26px;
 }
 
 .datepicker-outer .scrollbar .ui-state-default {
@@ -138,5 +145,17 @@ td > span {
   background-position: 1px -41px;
   outline: none;
 }
+
+.datepicker-outer .fa {
+  color:#d3e8f7;
+  font-size: 30px;
+  position: absolute;
+  top: 240px;
+  cursor: pointer;
+}
+
+.fa.fa-chevron-left {left: 20px;}
+
+.fa.fa-chevron-right {right: 20px;}
 
 /* cbcbcb
